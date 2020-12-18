@@ -1,7 +1,9 @@
 import React, {useEffect} from 'react';
 import './App.css';
-import { WinterWrapper } from './components/WinterWrapper';
+import { WinterWrapper, LogoContainer, XmasMessage } from './components/WinterWrapper';
+import CongratName from './components/CongratName';
 import initLetItSnow from './utils/initLetItSnow';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 export default function App() {
 
@@ -9,20 +11,19 @@ export default function App() {
       initLetItSnow();
     },[])
 
+    const isMobile = useMediaQuery('(max-width:484px)');
+
     return (
       <WinterWrapper >
-        <section class="xmas">
+        <section className="xmas">
 
-        <div class="to">
-          <div>Beste</div>
-          <div>Klant</div>
-        </div>
+        <CongratName />
   
-        <div class="xmas-message"></div>
+        <XmasMessage isMobile={isMobile}/>
 
-        <div class="from">
+        <div className="from">
           <a href="https://becloud.es/">
-            <div class="gc-link small-title from-name"></div>
+            <LogoContainer />
           </a>
         </div>
 
