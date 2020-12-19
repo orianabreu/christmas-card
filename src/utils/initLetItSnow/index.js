@@ -116,6 +116,11 @@
         mY = e.clientY;
     });
 
+    canvas.addEventListener("touchmove", function(e) {
+        mX = e.targetTouches[0].clientX;
+        mY = e.targetTouches[0].clientY;
+    });
+
     window.addEventListener("resize",function(){
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;

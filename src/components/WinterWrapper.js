@@ -56,3 +56,8 @@ export const XmasMessage = styled.div`
   margin: 0 auto;
   background: url(${MerryXmas}) no-repeat 50% 50%/contain;
 `;
+
+export const LoadSwitch = styled.div`
+  opacity: ${({isLoading}) => isLoading ? 0 : 1};
+  transition: all 0.5s;
+`;
