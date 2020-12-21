@@ -1,14 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import {useParams} from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 import { WinterWrapper, LogoContainer, XmasMessage, LoadSwitch } from '../../components/WinterWrapper';
 import CongratName from '../../components/CongratName';
 import initLetItSnow from '../../utils/initLetItSnow';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import axios from 'axios';
+import qs from 'query-string';
 
 export default function Home() {
 
-    const { id } = useParams();
+    const { search } = useLocation();
 
     const [isLoading, setIsLoading] = useState(true);
     const [data, setData] = useState();
@@ -16,7 +17,7 @@ export default function Home() {
     const getEmployee = async({id}) => {
       setIsLoading(true);
       try{
-        const response = await axios.get(`http://tarjetadigital.becloud.es:8080/td-0/api/td/get/${id}`);
+        const response = await axios.get(`http://tarjetadigital.becloud.es:8080/td-0/api/td/get/${qs.parse(search)?.id}`);
         setData(response);
         setIsLoading(false);
       }
@@ -31,8 +32,8 @@ export default function Home() {
 
     useEffect(() => {
       initLetItSnow();
-      if(id){
-        getEmployee({id});
+      if(search){
+        getEmployee({search});
       } else {
         setData({error: 'Esta tarjeta no está disponible'});
         setIsLoading(false);
@@ -40,7 +41,7 @@ export default function Home() {
           window.location.replace(`https://BeCLOUD.es`);
         }, 3000)
       }
-    },[id]);
+    },[search]);
 
     const isMobile = useMediaQuery('(max-width:484px)');
 

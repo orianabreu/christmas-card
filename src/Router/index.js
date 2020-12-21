@@ -4,7 +4,7 @@ import Home from '../pages/Home';
 export default function CustomRouter() {
     return (
         <BrowserRouter>
-            <Route exact path='/:id' component={Home} />
+            <Route exact path='/' component={Home} />
             <Route component={Home} />
         </BrowserRouter>
     )
